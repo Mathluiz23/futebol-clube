@@ -1,4 +1,5 @@
 import * as express from 'express';
+import route from './database/routes';
 
 class App {
   public app: express.Express;
@@ -22,9 +23,15 @@ class App {
     // ...
   }
 
+  public use(rota: string, callback:express.RequestHandler):void {
+    this.app.use(rota, callback);
+  }
+
   // ...
   public start(PORT: string | number):void {
+    this.app.use(express.json());
     this.app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+    this.app.use(route);
   }
 }
 
