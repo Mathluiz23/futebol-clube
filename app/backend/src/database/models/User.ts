@@ -1,7 +1,17 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
 
-class User extends Model { }
+class User extends Model { 
+  public id: number;
+
+  public username: string;
+
+  public role: string;
+
+  public email: string;
+
+  public password: string
+}
 
 User.init({
   id: {
@@ -27,6 +37,7 @@ User.init({
     allowNull: false,
   },
 }, {
+
   sequelize: db,
   modelName: 'User',
   tableName: 'users',
