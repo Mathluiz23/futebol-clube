@@ -38,13 +38,13 @@ module.exports = {
         allowNull: false,
       },
       in_progress: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface, _Sequelize) => {
     await queryInterface.dropTable('matchs');
   }
 };

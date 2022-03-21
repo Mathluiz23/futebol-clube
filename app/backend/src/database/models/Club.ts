@@ -2,6 +2,10 @@ import { Model, DataTypes } from 'sequelize';
 import db from '.';
 
 class Club extends Model {
+  declare id: number;
+
+  declare clubName: string;
+  
   static associate(models: any) {
     Club.hasMany(models.Match, { foreignKey: 'id', as: 'matchs' });
   }

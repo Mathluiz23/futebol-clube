@@ -2,6 +2,18 @@ import { Model, DataTypes } from 'sequelize';
 import db from '.';
 
 class Match extends Model {
+  declare id: number;
+
+  declare homeTeam: number;
+
+  declare homeTeamGoals: number;
+
+  declare awayTeam:number;
+
+  declare awayTeamGoals: number;
+
+  declare inProgress:number;
+  
   static associate(models: any) {
     this.belongsTo(models.Club, { foreignKey: 'id', as: 'clubs' });
   }
