@@ -13,6 +13,7 @@ Club.init({
     allowNull: false,
   },
   clubName: {
+    field: 'club_name',
     type: DataTypes.STRING,
     allowNull: false,
   },

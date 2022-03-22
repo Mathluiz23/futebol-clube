@@ -1,22 +1,21 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
+import Club from './Club';
 
 class Match extends Model {
-  declare id: number;
+  public id: number;
 
-  declare homeTeam: number;
+  public homeTeam: number;
 
-  declare homeTeamGoals: number;
+  public homeTeamGoals: number;
 
-  declare awayTeam:number;
+  public awayTeam:number;
 
-  declare awayTeamGoals: number;
+  public awayTeamGoals: number;
 
-  declare inProgress:number;
+  public inProgress:number;
   
-  static associate(models: any) {
-    this.belongsTo(models.Club, { foreignKey: 'id', as: 'clubs' });
-  }
+  public dataValues: any;
 }
 
 Match.init({
@@ -26,7 +25,8 @@ Match.init({
     autoIncrement: true,
     allowNull: false,
   },
-  home_team: {
+  homeTeam: {
+    field: 'home_team',
     type: DataTypes.INTEGER,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -36,11 +36,13 @@ Match.init({
     },
     allowNull: false,
   },
-  home_team_goals: {
+  homeTeamGoals: {
+    field: 'home_team_goals',
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  away_team: {
+  awayTeam: {
+    field: 'away_team',
     type: DataTypes.INTEGER,
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
@@ -50,19 +52,44 @@ Match.init({
     },
     allowNull: false,
   },
-  away_team_goals: {
+  awayTeamGoals: {
+    field: 'away_team_goals',
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  in_progress: {
-    type: DataTypes.INTEGER,
+  inProgress: {
+    field: 'in_progress',
+    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
 }, {
+  underscored: true,
   sequelize: db,
   modelName: 'Match',
   tableName: 'matchs',
   timestamps: false,
+});
+
+Match.belongsTo(Club, {
+  foreignKey:'home_team',
+  targetKey: 'id',
+  as: 'homeClub'
+});
+
+Match.belongsTo(Club, {
+  foreignKey:'away_team',
+  targetKey: 'id',
+  as: 'awayClub'
+});
+
+Club.hasMany(Match, {
+  foreignKey: 'home_team',
+  as: 'matchHome',
+});
+
+Club.hasMany(Match, {
+  foreignKey: 'away_team',
+  as: 'matchAway',
 });
 
 export default Match;
