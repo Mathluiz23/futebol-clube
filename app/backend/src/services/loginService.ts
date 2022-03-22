@@ -1,11 +1,11 @@
 import User from '../database/models/User';
 import { createToken, validateToken } from '../utils/token';
 
-function userValidate(email:string, password: string): boolean {
+function userValidate(email: string, password: string): boolean {
   return !email || !password;
 }
 
-export async function login(email:string, password: string) {
+export async function login(email: string, password: string) {
   if (userValidate(email, password)) {
     return { response: { message: 'All fields must be filled' }, status: 401 };
   }
@@ -31,6 +31,7 @@ export async function validate(token: any) {
   }
 
   const { role } = tokenValid.payload;
-  
+
   return { response: role, status: 200 };
+
 }
