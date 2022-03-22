@@ -31,7 +31,6 @@ export async function validate(token: any) {
   }
 
   const { role } = tokenValid.payload;
-
   return { response: role, status: 200 };
 
 }
