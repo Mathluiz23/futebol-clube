@@ -3,7 +3,8 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import Example from '../database/models/ExampleModel';
+import User from '../database/models/User';
+import { userPayload } from './mocks'
 
 import { Response } from 'superagent';
 
@@ -12,33 +13,35 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Seu teste', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
+  let chaiHttpResponse: Response;
+  before(async () => {
+    sinon
+      .stub(User, "findOne")
+      .resolves(userPayload as any);
+  });
 
-  // let chaiHttpResponse: Response;
+  after(()=>{
+    (User.findOne as sinon.SinonStub).restore();
+  })
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
+  it('Quando o login é realizado com sucesso, verifica status', async () => {
+    chaiHttpResponse = await chai
+       .request(app).post('/login').send({ email: userPayload.email, password: userPayload.password });
 
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
+    expect(chaiHttpResponse).to.have.status(200);
+  });
 
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
+  it('Verifica quando o login é realizado, se o usuário está correto', async () => {
+    chaiHttpResponse = await chai
+       .request(app).post('/login').send({ email: userPayload.email,
+        password: userPayload.password });
+  
+       expect(chaiHttpResponse).to.property('email').contain('admin@admin.com');
+  });
 
-  //   expect(...)
-  // });
-
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+  it('Verifica quando o login é realizado, se o email está correto', async () => {
+    chaiHttpResponse = await chai
+       .request(app).post('/login').send({ password: userPayload.password });
+       expect(chaiHttpResponse).to.have.status(401);
   });
 });
