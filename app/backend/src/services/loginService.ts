@@ -1,5 +1,6 @@
 import User from '../database/models/User';
-import { validateToken, validatePassword, loginResponse } from '../utils/token';
+import { validateToken, validatePassword } from '../utils/token';
+import { loginResponse } from '../utils/loginResponse';
 
 function userValidate(email: string, password: string): boolean {
   return !email || !password;
@@ -10,9 +11,9 @@ export async function login(email: string, password: string) {
     return { response: { message: 'All fields must be filled' }, status: 401 };
   }
 
-  const userFound: User | null = await User.findOne({ where: { email },
+  const userFound: User | null = await User.findOne({
+    where: { email },
     raw: true,
-    attributes: { exclude: ['password'] },
   });
 
   if (!userFound) {
