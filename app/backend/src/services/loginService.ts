@@ -1,5 +1,6 @@
+import { loginResponse } from '../utils/loginResponse';
 import User from '../database/models/User';
-import { createToken, validateToken, validatePassword } from '../utils/token';
+import { validateToken, validatePassword } from '../utils/token';
 
 function userValidate(email: string, password: string): boolean {
   return !email || !password;
@@ -11,6 +12,7 @@ export async function login(email: string, password: string) {
   }
 
   const userFound: User | null = await User.findOne({ where: { email },
+    raw: true,
     attributes: { exclude: ['password'] },
   });
 
@@ -18,8 +20,7 @@ export async function login(email: string, password: string) {
     return { response: { message: 'Incorrect email or password' }, status: 401 };
   }
 
-  const hash = await userFound.getDataValue('password');
-  const passwordValid = await validatePassword(password, hash);
+  const passwordValid = await validatePassword(password, userFound.password);
 
   if (passwordValid) {
     return {
@@ -27,7 +28,8 @@ export async function login(email: string, password: string) {
     };
   }
 
-  return { response: { user: userFound, token: await createToken(userFound) }, status: 200 };
+  const response = await loginResponse(userFound);
+  return { response, status: 200 };
 }
 
 export async function validate(token: any) {
