@@ -1,6 +1,5 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
-import User from '../database/models/User';
 
 const jwtSecret = 'super_senha';
 
