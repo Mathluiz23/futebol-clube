@@ -1,5 +1,5 @@
 import User from '../database/models/User';
-import { validateToken, validatePassword, loginResponse } from '../utils/token';
+import { validateToken, validatePassword, createLoginResponse } from '../utils/token';
 
 function userValidate(email: string, password: string): boolean {
   return !email || !password;
@@ -21,13 +21,13 @@ export async function login(email: string, password: string) {
 
   const passwordValid = await validatePassword(password, userFound.password);
 
-  if (!passwordValid) {
+  if (passwordValid) {
     return {
       response: { message: 'Incorrect email or password' }, status: 401,
     };
   }
 
-  const response = await loginResponse(userFound);
+  const response = await createLoginResponse(userFound);
   return { response, status: 200 };
 }
 

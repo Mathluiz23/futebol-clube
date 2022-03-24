@@ -5,9 +5,10 @@ import User from '../database/models/User';
 
 const jwtSecret = 'super_senha';
 
-export async function validatePassword(string: string | null, hash:string | null) {
-  return !bcrypt.compare(string
- || 'ffh', hash || 'asd');
+export function validatePassword(password:string, hash:string) {
+  const compare = !bcrypt.compareSync(password, hash);
+  return compare;
+  // console.log('aquiiiiiiiii', compare);
 }
 
 export async function createToken(payload:any) {

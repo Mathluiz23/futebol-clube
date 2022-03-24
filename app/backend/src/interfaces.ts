@@ -1,6 +1,6 @@
 import User from './database/models/User';
 
-export interface LoginReq {
+export interface Login {
   email: string,
   password: string,
 }
