@@ -9,9 +9,10 @@ class App {
   constructor() {
     this.app = express();
     this.config();
+    this.app.use(express.json());
     this.app.use(Cors());
     // ...
-    this.app.use(express.json());
+
     this.app.use(route);
   }
 
