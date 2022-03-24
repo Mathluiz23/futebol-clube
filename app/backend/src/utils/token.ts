@@ -1,6 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 
+import User from '../database/models/User';
+
 const jwtSecret = 'super_senha';
 
 export async function validatePassword(string: string | null, hash:string | null) {
@@ -20,4 +22,11 @@ export function validateToken(token:string): any {
   } catch (error) {
     return false;
   }
+}
+
+export async function createLoginResponse(userResponse: User): Promise<any> {
+  const { id, email, username, role } = userResponse;
+  const user = { id, email, username, role };
+  const token = await createToken(user);
+  return { user, token };
 }
