@@ -14,7 +14,7 @@ class Match extends Model {
   public awayTeamGoals: number;
 
   public inProgress:number;
-  
+
   public dataValues: any;
 }
 
@@ -31,8 +31,8 @@ Match.init({
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     references: {
-        model: 'clubs',
-        key: 'id',
+      model: 'clubs',
+      key: 'id',
     },
     allowNull: false,
   },
@@ -47,8 +47,8 @@ Match.init({
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     references: {
-        model: 'clubs',
-        key: 'id',
+      model: 'clubs',
+      key: 'id',
     },
     allowNull: false,
   },
@@ -71,15 +71,15 @@ Match.init({
 });
 
 Match.belongsTo(Club, {
-  foreignKey:'home_team',
+  foreignKey: 'home_team',
   targetKey: 'id',
-  as: 'homeClub'
+  as: 'homeClub',
 });
 
 Match.belongsTo(Club, {
-  foreignKey:'away_team',
+  foreignKey: 'away_team',
   targetKey: 'id',
-  as: 'awayClub'
+  as: 'awayClub',
 });
 
 Club.hasMany(Match, {

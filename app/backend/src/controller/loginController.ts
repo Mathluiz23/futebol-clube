@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import * as loginService from '../services/loginService';
-import { ResponseStatus } from '../interfaces/ResponseStatus';
+import { ResponseStatus } from '../interfaces';
 
 export async function login(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body;
