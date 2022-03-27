@@ -68,7 +68,4 @@ describe('Testando a rota /clubs/:id', () => {
 
     expect(chaiHttpResponse.body.id).to.equal(clubs[0].id);
   });
-
-  
- 
 });
