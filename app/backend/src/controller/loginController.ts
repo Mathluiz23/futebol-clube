@@ -4,6 +4,7 @@ import { ResponseStatus } from '../interfaces';
 
 export async function login(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body;
+  console.log(email);
 
   const userFound: ResponseStatus = await loginService.login(email, password);
 
