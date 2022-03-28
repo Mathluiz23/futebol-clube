@@ -1,10 +1,10 @@
 import * as express from 'express';
-import { getAll, getById } from '../controller/matchController';
+import { getAll, getById, createMatch } from '../controller/matchController';
 
 const route = express.Router();
 
 route.get('/:id', getById);
 route.get('/', getAll);
-route.post('/');
+route.post('/', createMatch);
 
 export default route;
