@@ -11,7 +11,6 @@ class App {
     this.config();
     this.app.use(express.json());
     this.app.use(Cors());
-    // ...
 
     this.app.use(route);
   }
