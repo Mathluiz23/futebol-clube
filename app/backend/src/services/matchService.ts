@@ -48,3 +48,9 @@ export async function createMatch(req: Request): Promise<ResponseStatus> {
 
   return { response: match, status: 201 };
 }
+
+export async function matchFineshed(id: number) {
+  const matchFound = await Match.update({ inProgress: false }, { where: { id } });
+
+  return { response: matchFound, status: 200 };
+}
