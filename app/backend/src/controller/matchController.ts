@@ -24,3 +24,9 @@ export async function matchFineshed(req: Request, res: Response): Promise<void> 
 
   res.status(userFound.status).json(userFound.response);
 }
+
+export async function update(req: Request, res: Response): Promise<void> {
+  const userFound: ResponseStatus = await matchService.matchUpadate(req);
+
+  res.status(userFound.status).json(userFound.response);
+}
