@@ -54,3 +54,17 @@ export async function matchFineshed(id: number) {
 
   return { response: matchFound, status: 200 };
 }
+
+export async function matchUpadate(req: Request) {
+  const { body, params: { id } } = req;
+
+  if (!body.homeTeamGoals) {
+    const match = await Match.update({ inProgress: false }, { where: { id: +id } });
+
+    return { response: match, status: 200 };
+  }
+
+  const match = await Match.update(body, { where: { id: +id } });
+
+  return { response: match, status: 200 };
+}
