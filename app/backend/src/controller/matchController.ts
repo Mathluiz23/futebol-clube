@@ -14,7 +14,13 @@ export async function getById(req: Request, res: Response): Promise<void> {
 }
 
 export async function createMatch(req: Request, res: Response): Promise<void> {
-  const MatchCreated = await matchService.createMatch(req);
+  const match = await matchService.createMatch(req);
 
-  res.status(MatchCreated.status).json(MatchCreated.response);
+  res.status(match.status).json(match.response);
+}
+
+export async function matchFineshed(req: Request, res: Response): Promise<void> {
+  const userFound: ResponseStatus = await matchService.matchFineshed(+req.params.id);
+
+  res.status(userFound.status).json(userFound.response);
 }
