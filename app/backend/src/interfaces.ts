@@ -30,10 +30,26 @@ export interface IMatchs {
   status?: number,
 }
 
-export interface ResultMatch {
+export interface IResultMatch {
+  id?: number,
   name?: string,
+  clubName?: string,
+  resultMatchs?: IResultMatch[],
   points: number,
   goalsFavor: number,
   goalsOwn: number,
   inProgress: boolean,
+}
+
+export interface IResult {
+  name: string,
+  totalPoints: number,
+  totalGames: number,
+  totalVictories: number,
+  totalDraws: number,
+  totalLosses: number,
+  goalsFavor: number,
+  goalsOwn: number,
+  goalsBalance: number,
+  efficiency: number,
 }

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as clubService from '../services/clubService';
 import { ResponseStatus } from '../interfaces';
 
-export async function getAllBy(req: Request, res: Response): Promise<void> {
+export async function getAllBy(_req: Request, res: Response): Promise<void> {
   const userFound: ResponseStatus = await clubService.getAll();
 
   res.status(userFound.status).json(userFound.response);
