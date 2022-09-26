@@ -166,7 +166,7 @@ Aplicação dockerizada em `Node.js + Typescript` usando o pacote `sequelize`.
   - .
     ## Frontend:
     - Entre no diretório "frontend" `cd app/frontend` e execute o comando `npm start` para iniciar o front end da aplicação.
-    - Ou acesse o seu navegador no endereço .[Link Acesso ao Front-end](http://localhost:3000/leaderboard).
+    - Ou acesse o seu navegador no endereço [http://localhost:3000/leaderboard]
 
     ## Backend:
     - Mude o nome do arquivo ".env.example" para ".env" e preencha com as informações do seu usuario MySQL
