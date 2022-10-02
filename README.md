@@ -181,7 +181,7 @@ Aplicação dockerizada em `Node.js + Typescript` usando o pacote `sequelize`.
 - email: admin@admin.com
 - password: secret_admin
 
-  ## Gif da aplicação rodando
+  ## Demonstração da aplicação rodando
 
 <img src="./fcApp.gif">
 
