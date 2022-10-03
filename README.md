@@ -166,12 +166,12 @@ Aplicação dockerizada em `Node.js + Typescript` usando o pacote `sequelize`.
   ```
 
 # :checkered_flag::man_technologist: Como rodar o projeto localmente:
-  - .
-    ## Frontend:
+ 
+   ## 💻 Frontend
     - Entre no diretório "frontend" `cd app/frontend` e execute o comando `npm start` para iniciar o front end da aplicação.
     - Ou acesse o seu navegador no endereço [http://localhost:3000/leaderboard]
 
-    ## Backend:
+   ## 🧙‍♂️🗂️ Backend:
     - Mude o nome do arquivo ".env.example" para ".env" e preencha com as informações do seu usuario MySQL
     - Case não tenha o MySql instalado, siga o [Tutorial](https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela?gclid=Cj0KCQjw06OTBhC_ARIsAAU1yOXB1KimL-aPJ6uv3yx6-rOoWZ5AGiEr4ewdQNHQNuy1IphJU_mO77kaAn3qEALw_wcB)
     - Entre no diretório "backend" `cd app/backend` e execute o comando `npm start` para iniciar o back end da aplicação
